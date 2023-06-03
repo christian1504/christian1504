@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SCC | jQuery Quiz</title>
+
+   <!-- importing JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style type="text/css">
+        div.question-box {
+            margin: 10px 0 20px 0;
+        }
+        .question-box {
+        border: 1px solid black;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    
+    h2 {
+        margin-top: 0;
+    }
+    
+    input[type="text"] {
+        width: 200px;
+        margin-right: 10px;
+    }
+    
+    button {
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #3e8e41;
+    }
+    
+    #names-q3 li {
+        margin-bottom: 5px;
+    }
+    
+    #names-q3 button {
+        margin-left: 10px;
+    }
+    </style>
+
+ <script>
+  function q1() {
+    const input_q1 = document.getElementById("input-q1").value;
+    // 1. Menerima nilai input-q1
+    if (input_q1 === "") {
+      // 2. Jika nilai inputnya kosong
+      alert("Nilai input tidak boleh kosong!"); // 3. Keluarkan pesan peringatan
+    } else {
+      alert(input_q1); // 4. Tampilkan nilai input
+    }
+  }
+
+  function q2() {
+    const input_q2 = document.getElementById("input-q2").value;
+    // 1. Menerima nilai input-q2
+    if (!input_q2.includes("@")) {
+      // 2. Jika ada '@' di nilai input (Hint! Coba gunakan 'includes')
+      alert("Input harus berupa email!"); // 5. Keluarkan peringatan jika nilai inputnya bukanlah email
+    } else {
+      const domain = input_q2.split("@")[1].split(".")[0]; // 3. rtanny@gmail.com -> extract 'gmail'
+      alert(domain); // 4. Tampilkan nilai domain
+    }
+  }
+
+  function q3() {
+    const input_q3 = document.getElementById("input-q3").value;
+    // 1. Menerima nilai input-q3
+    if (input_q3 === "") {
+      alert("Nilai input tidak boleh kosong!"); // 2. Keluarkan pesan peringatan jika nilai inputnya kosong
+    } else {
+      const names = input_q3.split(","); // 3. Dengan nilai input yang dimasukkan, buatlah list dari "names" -q3 (Gunakan backticks!)
+      let temp_html = "";
+      names.forEach((name) => {
+        temp_html += `<li>${name}</li>`;
+      });
+      document.getElementById("names-q3").innerHTML = temp_html; // 4. masukkan temp_html ke "names:-q3"
+    }
+  }
+
+  function q3_delete() {
+    document.getElementById("names-q3").innerHTML = ""; // 1. Hapus semua lists di names-q3
+  }
+</script>
+
+</head>
+
+<body>
+    <h1>ayo praktek jQuery!</h1>
+
+    <div class="question-box">
+        <h2>Q1. Informasi Input Box</h2>
+        <h5>1-1. peringatan masukan data dan tekan tombol submit</h5>
+        <h5>1-2. peringatan masukn data apa pun ketika inputan kosong</h5>
+        <input id="input-q1" type="text" /> <button onclick="q1()">Submit</button>
+    </div>
+    <hr />
+    <div class="question-box">
+        <h2>Q2. Email Checker</h2>
+        <h5>2-1. peringatan!! masukan(email) dan tekan tombol check</h5>
+        <h5>2-2. peringatan!! "alamat email tidak valid" inputan yang di masukan harus menggunakan tanda "@"</h5>
+        <h5>2-3. peringatan!! email harus menggunakan domain contoh gmail.com atau yahoo.com</h5>
+        <input id="input-q2" type="text" /> <button onclick="q2()">Check</button>
+    </div>
+    <hr />
+    <div class="question-box">
+        <h2>Q3. List Nama </h2>
+        <h5>3-1. Masukkan nama untuk muncul dalam list</h5>
+        <h5>3-2.tombol untuk hapus semua</h5>
+        <input id="input-q3" type="text" placeholder="Name here" />
+        <button onclick="q3()">Tambahkan</button>
+        <button onclick="q3_delete()">Hapus Semua</button>
+        <ul id="names-q3">
+            <li>sastra</li>
+        </ul>
+    </div>
+</body>
+
+</html>
